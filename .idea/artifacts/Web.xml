@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact name="Web">
+    <output-path>$PROJECT_DIR$/out/artifacts/Web</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="GestionOeuvre/web/Web" />
+      <element id="archive" name="archive.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
