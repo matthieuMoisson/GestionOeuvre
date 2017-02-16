@@ -8,32 +8,25 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Affichage de tous les adhérents</title>
 	<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
-			integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-			crossorigin="anonymous"></script>
-	<script type="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
 </head>
 <body>
 
-<script type="javascript">
+<script>
     $(document).ready(function () {
         $('#tableAdherents').DataTable();
     });
 </script>
 
-<P>
-	<A href="index.jsp"><FONT face="Arial" color="#004080">Retour
-		Accueil</FONT></A>
-</P>
-<P align="center">
-	<FONT face="Arial" size="5" color="#004080"><U> <STRONG>Listing&nbsp;des
-		Adhérents </STRONG></U></FONT>
-</P>
+<p>
+	<a href="index.jsp">Retour Accueil</a>
+</p>
 
 <h2>Tableau des Adhérents ! </h2>
 
-<table border="1" id="tableAdherents">
+<table id="tableAdherents">
 	<thead>
 	<th>Numero</th>
 	<th>Nom</th>
