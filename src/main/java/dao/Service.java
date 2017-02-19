@@ -1,10 +1,11 @@
 package dao;
 
 import meserreurs.MonException;
-import java.util.*;
+import metier.Adherent;
+import persistance.DialogueBd;
 
-import metier.*;
-import persistance.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Service {
 
@@ -27,12 +28,55 @@ public class Service {
 		}
 	}
 
+	/**
+	 * 	Edit an Adherent
+	 * @param adherent Adherent object that will be edited
+	 * @throws MonException
+	 */
+	public void editAdherent(Adherent adherent) throws MonException
+	{
+		String mysql;
+		DialogueBd unDialogueBd = DialogueBd.getInstance();
+		try
+		{
+			mysql = "UPDATE adherent SET "+
+					"nom_adherent ='" + adherent.getNomAdherent() +"'"+
+					",prenom_adherent ='" + adherent.getPrenomAdherent() +"'"+
+					",ville_adherent ='" + adherent.getVilleAdherent() +"' "+
+					"WHERE id_adherent ='" + adherent.getIdAdherent() +"'";
+			unDialogueBd.execute(mysql);
+		} catch ( MonException e)
+		{
+			throw e;
+		}
+	}
+
+	/**
+	 * 	Delete an adherent
+	 * @param idAdherent id of the adherent to be deleted
+	 * @throws MonException
+	 */
+	public void deleteAdherent(int idAdherent) throws MonException
+	{
+		String mysql;
+		DialogueBd unDialogueBd = DialogueBd.getInstance();
+		try
+		{
+			mysql = "DELETE FROM adherent "+
+					"WHERE id_adherent ='" + idAdherent +"'";
+			unDialogueBd.execute(mysql);
+		} catch ( MonException e)
+		{
+			throw e;
+		}
+	}
+
 	// gestion des adherents
 	// Consultation d'un adhérent par son numéro
 	// Fabrique et renvoie un objet adhérent contenant le résultat de la requête
 	// BDD
 	public Adherent consulterAdherent(int numero) throws MonException {
-		String mysql = "select * from adherent where numero_adherent=" + numero;
+		String mysql = "select * from adherent where id_adherent=" + numero;
 		List<Adherent> mesAdh = consulterListeAdherents(mysql);
 		if (mesAdh.isEmpty())
 			return null;

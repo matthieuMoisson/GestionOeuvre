@@ -10,39 +10,58 @@
 	<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<script>
-    $(document).ready(function () {
-        $('#tableAdherents').DataTable();
-    });
-</script>
+	<script>
+		$(document).ready(function () {
+			$('#tableAdherents').DataTable();
+		});
+	</script>
+	<p>
+		<a class="btn btn-success" href="index.jsp" role="button">Retour Accueil</a>
+	</p>
 
-<p>
-	<a href="index.jsp">Retour Accueil</a>
-</p>
+	<h2>Tableau des Adhérents ! <a class="btn btn-success" href="Controleur?action=ajouterAdherent" role="button">Ajouter un adherent</a></h2>
 
-<h2>Tableau des Adhérents ! </h2>
+	<table id="tableAdherents">
+		<thead>
+		<th>Numero</th>
+		<th>Nom</th>
+		<th>Prénom</th>
+		<th>Ville</th>
 
-<table id="tableAdherents">
-	<thead>
-	<th>Numero</th>
-	<th>Nom</th>
-	<th>Prénom</th>
-	<th>Ville</th>
+		</thead>
 
-	</thead>
+		<c:forEach items="${mesAdherents}" var="item">
+			<tr>
+				<td>${item.idAdherent}</td>
+				<td>${item.nomAdherent}</td>
+				<td>${item.prenomAdherent}</td>
+				<td>${item.villeAdherent}</td>
+				<!-- Modifier button -->
+				<td>
+					<form  name='identification' method="post" action="Controleur?action=getAdherent" onsubmit="">
+						<INPUT type="hidden" name="txtidAdherent" id ="idAdherent" value="${item.idAdherent}" >
+						<INPUT type="submit" class="btn btn-info"  value="Modifier" >
+					</form>
+				</td>
+				<!-- Delete button -->
+				<td>
+					<form  name='identification' method="post" action="Controleur?action=deleteAdherent" onsubmit="">
+						<INPUT type="hidden" name="txtidAdherent" value="${item.idAdherent}" >
+						<INPUT type="submit" class="btn btn-danger"  value="Supprimer" >
+					</form>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
 
-	<c:forEach items="${mesAdherents}" var="item">
-		<tr>
-			<td>${item.idAdherent}</td>
-			<td>${item.nomAdherent}</td>
-			<td>${item.prenomAdherent}</td>
-			<td>${item.villeAdherent}</td>
-		</tr>
-	</c:forEach>
-</table>
+
+
+
+
 </body>
 </html>
