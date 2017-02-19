@@ -5,35 +5,47 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Ajouter un  adhérent</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<SCRIPT language="Javascript" type="text/javascript">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script type="text/javascript" src="js/foncControle.js"></script>
 
 
 <body>
-	<H1> Ajout d'un adhérent </H1>
+    <div>
+        <p>
+            <a class="btn btn-success"  role="button" href="Controleur?action=listerAdherent">
+                Retour vers la liste des adherents
+            </a>
+        </p>
 
-<div align="center">
-<form  name='identification' method="post" action="Controleur?action=insererAdherent" onsubmit="">
-     <P align="left">
-		<FONT face="Arial" color="#004080"> <BR>&nbsp;  &nbsp;  &nbsp; Nom de l'adherent : </FONT>
-	    <INPUT type="text" name="txtnom" value=""  id ="nom"> <BR>
-        <FONT face="Arial" color="#004080">
-		<BR>Prenom de l'adherent : </FONT>
-        <INPUT type="text" name="txtprenom"  id ="prenom"  > <BR>
-        
-        <FONT face="Arial" color="#004080"> <BR>&nbsp;  &nbsp;  &nbsp; Ville de l'adherent :</FONT>
-        <INPUT type="text" name="txtville" id ="ville">
-        <FONT face="Arial" color="#004080">	<BR></FONT><BR>
-        
-          <!-- Boutons Ajouter -->
-          
-        <INPUT type="submit" name="bt"  value="Ajouter" >
-        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      
-</P></form>
-</div>
-<BR>
+        <div class="container">
+            <h2>Ajout d'un adhérent</h2>
+            <form class="form-horizontal" name='identification' method="post" action="Controleur?action=insererAdherent">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="nom">Nom:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="txtnom" id="nom" placeholder="Entrez votre nom" value="${adherent.nomAdherent}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="prenom">Prenom:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="txtprenom" id="prenom" placeholder="Entrez votre prénom" value="${adherent.prenomAdherent}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="ville">Ville:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="txtville" id="ville" placeholder="Enter votre ville" value="${adherent.villeAdherent}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-info">Ajouter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

@@ -18,6 +18,12 @@
 
 <body>
     <div>
+        <p>
+            <a class="btn btn-success"  role="button" href="Controleur?action=listerAdherent">
+                Retour vers la liste des adherents
+            </a>
+        </p>
+
         <div class="container">
             <h2>Modifier un adherent</h2>
             <form class="form-horizontal"  method="post" action="Controleur?action=editAdherent">

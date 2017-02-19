@@ -20,12 +20,11 @@
 			$('#tableAdherents').DataTable();
 		});
 	</script>
-
 	<p>
-		<a href="index.jsp">Retour Accueil</a>
+		<a class="btn btn-success" href="index.jsp" role="button">Retour Accueil</a>
 	</p>
 
-	<h2>Tableau des Adhérents ! </h2>
+	<h2>Tableau des Adhérents ! <a class="btn btn-success" href="Controleur?action=ajouterAdherent" role="button">Ajouter un adherent</a></h2>
 
 	<table id="tableAdherents">
 		<thead>

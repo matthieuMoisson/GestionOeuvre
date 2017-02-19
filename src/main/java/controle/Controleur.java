@@ -88,11 +88,13 @@ public class Controleur extends HttpServlet {
 				Service unService = new Service();
 				unService.insertAdherent(unAdherent);
 
+				request.setAttribute("mesAdherents", unService.consulterListeAdherents());
+
 			} catch (MonException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			destinationPage = "/index.jsp";
+			destinationPage = "/listerAdherent.jsp";
 		}
 		// Edit am adherent
 		else if (EDIT_ADHERENT.equals(actionName))
