@@ -1,10 +1,11 @@
 package dao;
 
 import meserreurs.MonException;
-import java.util.*;
+import metier.Adherent;
+import persistance.DialogueBd;
 
-import metier.*;
-import persistance.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Service {
 
@@ -32,7 +33,7 @@ public class Service {
 	// Fabrique et renvoie un objet adhérent contenant le résultat de la requête
 	// BDD
 	public Adherent consulterAdherent(int numero) throws MonException {
-		String mysql = "select * from adherent where numero_adherent=" + numero;
+		String mysql = "select * from adherent where id_adherent=" + numero;
 		List<Adherent> mesAdh = consulterListeAdherents(mysql);
 		if (mesAdh.isEmpty())
 			return null;

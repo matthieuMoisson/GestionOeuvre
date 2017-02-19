@@ -7,15 +7,16 @@
 <title>Ajouter un  adhérent</title>
 </head>
 <SCRIPT language="Javascript" type="text/javascript">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script type="text/javascript" src="js/foncControle.js"></script>
 
 
 <body>
-	<H1> Ajout d'un adhérent </H1> 
+	<H1> Ajout d'un adhérent </H1>
 
-<DIV align="center">
-<FORM  name='identification' method="post" action="Controleur?action=insererAdherent" onsubmit="return teste()">
-     <P align="left"><FONT face="Arial" color="#004080"></FONT>     
+<div align="center">
+<form  name='identification' method="post" action="Controleur?action=insererAdherent" onsubmit="">
+     <P align="left">
 		<FONT face="Arial" color="#004080"> <BR>&nbsp;  &nbsp;  &nbsp; Nom de l'adherent : </FONT>
 	    <INPUT type="text" name="txtnom" value=""  id ="nom"> <BR>
         <FONT face="Arial" color="#004080">
@@ -29,11 +30,10 @@
           <!-- Boutons Ajouter -->
           
         <INPUT type="submit" name="bt"  value="Ajouter" >
-        <FONT face="Arial" color="#004080"></FONT>
         &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       
-</P></FORM>
-</DIV>
+</P></form>
+</div>
 <BR>
 </body>
 </html>
