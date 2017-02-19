@@ -1,8 +1,10 @@
 package persistance;
 
+import meserreurs.MonException;
+
 import java.sql.*;
-import java.util.*;
-import meserreurs.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DialogueBd {
 

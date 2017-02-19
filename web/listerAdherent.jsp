@@ -44,9 +44,10 @@
 				<td>${item.villeAdherent}</td>
 				<td>
 					<form  name='identification' method="post" action="Controleur?action=getAdherent" onsubmit="">
-						<INPUT type="text" name="txtidAdherent" id ="idAdherent" value="${item.idAdherent}" >
+						<INPUT type="hidden" name="txtidAdherent" id ="idAdherent" value="${item.idAdherent}" >
 						<INPUT type="submit" class="btn btn-info"  value="Modifier" >
 					</form>
+					
 
 				</td>
 			</tr>

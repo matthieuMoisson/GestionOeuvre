@@ -20,28 +20,33 @@
     <div>
         <div class="container">
             <h2>Modifier un adherent</h2>
-            <form class="form-horizontal">
+            <form class="form-horizontal"  method="post" action="Controleur?action=editAdherent">
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="email">Nom:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="email" placeholder="Entrez votre nom" value="${adherent.nomAdherent}">
+                        <input type="hidden" class="form-control" name="txtid" id="id" value="${adherent.idAdherent}">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="pwd">Prenom:</label>
+                    <label class="control-label col-sm-2" for="nom">Nom:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="pwd" placeholder="Entrez votre prénom" value="${adherent.prenomAdherent}">
+                        <input type="text" class="form-control" name="txtnom" id="nom" placeholder="Entrez votre nom" value="${adherent.nomAdherent}">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="pwd">Ville:</label>
+                    <label class="control-label col-sm-2" for="prenom">Prenom:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="pwd" placeholder="Enter votre ville" value="${adherent.villeAdherent}">
+                        <input type="text" class="form-control" name="txtprenom" id="prenom" placeholder="Entrez votre prénom" value="${adherent.prenomAdherent}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="ville">Ville:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="txtville" id="ville" placeholder="Enter votre ville" value="${adherent.villeAdherent}">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-info">Submit</button>
+                        <button type="submit" class="btn btn-info">Modifier</button>
                     </div>
                 </div>
             </form>

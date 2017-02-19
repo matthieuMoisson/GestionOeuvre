@@ -28,6 +28,24 @@ public class Service {
 		}
 	}
 
+	public void editAdherent(Adherent adherent) throws MonException
+	{
+		String mysql;
+		DialogueBd unDialogueBd = DialogueBd.getInstance();
+		try
+		{
+			mysql = "UPDATE adherent SET "+
+					"nom_adherent ='" + adherent.getNomAdherent() +"'"+
+					",prenom_adherent ='" + adherent.getPrenomAdherent() +"'"+
+					",ville_adherent ='" + adherent.getVilleAdherent() +"' "+
+					"WHERE id_adherent ='" + adherent.getIdAdherent() +"'";
+			unDialogueBd.execute(mysql);
+		} catch ( MonException e)
+		{
+			throw e;
+		}
+	}
+
 	// gestion des adherents
 	// Consultation d'un adhérent par son numéro
 	// Fabrique et renvoie un objet adhérent contenant le résultat de la requête
