@@ -28,6 +28,11 @@ public class Service {
 		}
 	}
 
+	/**
+	 * 	Edit an Adherent
+	 * @param adherent Adherent object that will be edited
+	 * @throws MonException
+	 */
 	public void editAdherent(Adherent adherent) throws MonException
 	{
 		String mysql;
@@ -39,6 +44,26 @@ public class Service {
 					",prenom_adherent ='" + adherent.getPrenomAdherent() +"'"+
 					",ville_adherent ='" + adherent.getVilleAdherent() +"' "+
 					"WHERE id_adherent ='" + adherent.getIdAdherent() +"'";
+			unDialogueBd.execute(mysql);
+		} catch ( MonException e)
+		{
+			throw e;
+		}
+	}
+
+	/**
+	 * 	Delete an adherent
+	 * @param idAdherent id of the adherent to be deleted
+	 * @throws MonException
+	 */
+	public void deleteAdherent(int idAdherent) throws MonException
+	{
+		String mysql;
+		DialogueBd unDialogueBd = DialogueBd.getInstance();
+		try
+		{
+			mysql = "DELETE FROM adherent "+
+					"WHERE id_adherent ='" + idAdherent +"'";
 			unDialogueBd.execute(mysql);
 		} catch ( MonException e)
 		{

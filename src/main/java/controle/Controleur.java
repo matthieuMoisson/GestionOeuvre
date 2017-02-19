@@ -24,6 +24,7 @@ public class Controleur extends HttpServlet {
 	private static final String INSERER_ADHERENT = "insererAdherent";
 	private static final String GET_ADHERENT = "getAdherent";
 	private static final String EDIT_ADHERENT = "editAdherent";
+	private static final String DELETE_ADHERENT = "deleteAdherent";
 	private static final String ERROR_KEY = "messageErreur";
 	private static final String ERROR_PAGE = "/erreur.jsp";
 
@@ -93,6 +94,7 @@ public class Controleur extends HttpServlet {
 			}
 			destinationPage = "/index.jsp";
 		}
+		// Edit am adherent
 		else if (EDIT_ADHERENT.equals(actionName))
 		{
 			try {
@@ -112,7 +114,7 @@ public class Controleur extends HttpServlet {
 			}
 			destinationPage = "/listerAdherent.jsp";
 		}
-
+		// Get one adherent by its ID
 		else if (GET_ADHERENT.equals(actionName))
 		{
 			try {
@@ -124,6 +126,20 @@ public class Controleur extends HttpServlet {
 				e.printStackTrace();
 			}
 			destinationPage = "/editAdherent.jsp";
+		}
+		// Delete an adherent
+		else if (DELETE_ADHERENT.equals(actionName))
+		{
+			try {
+				int idAdherent = Integer.parseInt((request.getParameter("txtidAdherent")));
+				Service unService = new Service();
+				unService.deleteAdherent(idAdherent);
+				request.setAttribute("mesAdherents", unService.consulterListeAdherents());
+			} catch (MonException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			destinationPage = "/listerAdherent.jsp";
 		}
 
 		else {

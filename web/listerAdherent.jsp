@@ -42,13 +42,19 @@
 				<td>${item.nomAdherent}</td>
 				<td>${item.prenomAdherent}</td>
 				<td>${item.villeAdherent}</td>
+				<!-- Modifier button -->
 				<td>
 					<form  name='identification' method="post" action="Controleur?action=getAdherent" onsubmit="">
 						<INPUT type="hidden" name="txtidAdherent" id ="idAdherent" value="${item.idAdherent}" >
 						<INPUT type="submit" class="btn btn-info"  value="Modifier" >
 					</form>
-					
-
+				</td>
+				<!-- Delete button -->
+				<td>
+					<form  name='identification' method="post" action="Controleur?action=deleteAdherent" onsubmit="">
+						<INPUT type="hidden" name="txtidAdherent" value="${item.idAdherent}" >
+						<INPUT type="submit" class="btn btn-danger"  value="Supprimer" >
+					</form>
 				</td>
 			</tr>
 		</c:forEach>
