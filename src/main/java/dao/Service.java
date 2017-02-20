@@ -2,6 +2,7 @@ package dao;
 
 import meserreurs.MonException;
 import metier.Adherent;
+import metier.Proprietaire;
 import persistance.DialogueBd;
 
 import java.util.ArrayList;
@@ -114,6 +115,126 @@ public class Service {
 			}
 
 			return mesAdherents;
+		} catch (Exception exc) {
+			throw new MonException(exc.getMessage(), "systeme");
+		}
+	}
+
+	/**
+	 * Get all owners
+	 * @return List of all owners
+	 * @throws MonException
+	 */
+	public List<Proprietaire> getOwners() throws MonException {
+		String mysql = "select * from proprietaire";
+		return getOwners(mysql);
+	}
+
+	/**
+	 * Add a new owner to the DB
+	 * @param owner the owner object to add
+	 * @throws MonException
+	 */
+	public void addOwner(Proprietaire owner) throws MonException {
+		String mysql;
+
+		DialogueBd unDialogueBd = DialogueBd.getInstance();
+		try {
+			mysql = "insert into proprietaire  (nom_proprietaire,prenom_proprietaire)  " +
+					"values ('"
+					+ owner.getNomProprietaire();
+			mysql += "'" + ",'" + owner.getPrenomProprietaire() +  "')";
+
+			unDialogueBd.insertionBD(mysql);
+		} catch (MonException e) {
+			throw e;
+		}
+	}
+
+	/**
+	 * Get only one owner
+	 * @param ownerId the ID of the owner we are searching for
+	 * @return the owner object ot null if no owner is found
+	 * @throws MonException
+	 */
+	public Proprietaire getOwner(int ownerId) throws MonException {
+		String mysql = "select * from proprietaire where id_proprietaire=" + ownerId;
+		List<Proprietaire> owners = getOwners(mysql);
+		if (owners.isEmpty())
+			return null;
+		else {
+			return owners.get(0);
+		}
+	}
+
+	/**
+	 * Edit an owner
+	 * @param owner the owner to edit
+	 * @throws MonException
+	 */
+	public void edotOwner(Proprietaire owner) throws MonException
+	{
+		String mysql;
+		DialogueBd unDialogueBd = DialogueBd.getInstance();
+		try
+		{
+			mysql = "UPDATE proprietaire SET "+
+					"nom_proprietaire ='" + owner.getNomProprietaire() +"'"+
+					",prenom_proprietaire ='" + owner.getPrenomProprietaire() +"' "+
+					"WHERE id_proprietaire ='" + owner.getIdProprietaire() +"'";
+			unDialogueBd.execute(mysql);
+		} catch ( MonException e)
+		{
+			throw e;
+		}
+	}
+
+	/**
+	 * Delete an owner
+	 * @param ownerId the owner ID to delete
+	 * @throws MonException
+	 */
+	public void deleteOwner(int ownerId) throws MonException
+	{
+		String mysql;
+		DialogueBd unDialogueBd = DialogueBd.getInstance();
+		try
+		{
+			mysql = "DELETE FROM proprietaire "+
+					"WHERE id_proprietaire ='" + ownerId +"'";
+			unDialogueBd.execute(mysql);
+		} catch ( MonException e)
+		{
+			throw e;
+		}
+	}
+
+	/**
+	 * Get List of owners for a specific query
+	 * @param mysql the auery for getting a list of owner
+	 * @return List of owner found if no owner found then return an empty list
+	 * @throws MonException
+	 */
+	private List<Proprietaire> getOwners(String mysql) throws MonException {
+		List<Object> rs;
+		List<Proprietaire> owners = new ArrayList<Proprietaire>();
+		int index = 0;
+		try {
+			DialogueBd unDialogueBd = DialogueBd.getInstance();
+			rs = DialogueBd.lecture(mysql);
+			while (index < rs.size()) {
+				// On crée un stage
+				Proprietaire owner = new Proprietaire();
+				// il faut redecouper la liste pour retrouver les lignes
+				owner.setIdProprietaire(Integer.parseInt(rs.get(index + 0).toString()));
+				owner.setNomProprietaire(rs.get(index + 1).toString());
+				owner.setPrenomProprietaire(rs.get(index + 2).toString());
+				// On incrémente tous les 3 champs
+				index = index + 3;
+				owners.add(owner);
+			}
+
+			return owners;
 		} catch (Exception exc) {
 			throw new MonException(exc.getMessage(), "systeme");
 		}
