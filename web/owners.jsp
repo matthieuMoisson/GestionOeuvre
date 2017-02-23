@@ -22,15 +22,15 @@
 
 <script>
     $(document).ready(function () {
-        $('#tableAdherents').DataTable();
+        $('#tablePropriétaires').DataTable();
     });
 </script>
 <p>
     <a class="btn btn-success" href="index.jsp" role="button">Retour Accueil</a>
 </p>
 
-<h2>Tableau des Adhérents ! <a class="btn btn-success" href="Controleur?action=ajouterAdherent" role="button">Ajouter un adherent</a></h2>
-<table id="tableAdherents">
+<h2>Tableau des Propriétaires ! <a class="btn btn-success" href="OwnerController?action=gotoAddOwners" role="button">Ajouter un propriétaire</a></h2>
+<table id="tablePropriétaires">
     <thead>
     <th>Numero</th>
     <th>Nom</th>
@@ -45,15 +45,15 @@
             <td>${item.prenomProprietaire}</td>
             <!-- Modifier button -->
             <td>
-                <form  name='identification' method="post" action="Controleur?action=getAdherent" onsubmit="">
-                    <INPUT type="hidden" name="txtidAdherent" id ="idAdherent" value="" >
+                <form  name='identification' method="post" action="OwnerController?action=getOwner" onsubmit="">
+                    <INPUT type="hidden" name="txtidOwner" id ="idAdherent" value="${item.idProprietaire}" >
                     <INPUT type="submit" class="btn btn-info"  value="Modifier" >
                 </form>
             </td>
             <!-- Delete button -->
             <td>
-                <form  name='identification' method="post" action="Controleur?action=deleteAdherent" onsubmit="">
-                    <INPUT type="hidden" name="txtidAdherent" value="" >
+                <form  name='identification' method="post" action="OwnerController?action=deleteOwner" onsubmit="">
+                    <INPUT type="hidden" name="txtidOwner" value="${item.idProprietaire}" >
                     <INPUT type="submit" class="btn btn-danger"  value="Supprimer" >
                 </form>
             </td>

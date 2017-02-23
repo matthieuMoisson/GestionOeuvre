@@ -35,13 +35,13 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="nom">Nom:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="txtnom" id="nom" placeholder="Entrez votre nom" value="${adherent.nomAdherent}">
+                        <input type="text" class="form-control" name="txtnom" id="nom" placeholder="Entrez votre nom" value="${adherent.nomAdherent}" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="prenom">Prenom:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="txtprenom" id="prenom" placeholder="Entrez votre prénom" value="${adherent.prenomAdherent}">
+                        <input type="text" class="form-control" name="txtprenom" id="prenom" placeholder="Entrez votre prénom" value="${adherent.prenomAdherent}" required>
                     </div>
                 </div>
                 <div class="form-group">

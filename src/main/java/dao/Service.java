@@ -172,7 +172,7 @@ public class Service {
 	 * @param owner the owner to edit
 	 * @throws MonException
 	 */
-	public void edotOwner(Proprietaire owner) throws MonException
+	public void editOwner(Proprietaire owner) throws MonException
 	{
 		String mysql;
 		DialogueBd unDialogueBd = DialogueBd.getInstance();

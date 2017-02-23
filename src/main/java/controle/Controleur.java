@@ -96,7 +96,7 @@ public class Controleur extends HttpServlet {
 			}
 			destinationPage = "/listerAdherent.jsp";
 		}
-		// Edit am adherent
+		// Edit an adherent
 		else if (EDIT_ADHERENT.equals(actionName))
 		{
 			try {
