@@ -6,12 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Catalogue des oeuvres</title>
     <link rel="stylesheet" type="text/css" href="style/main.css">
     <%-- Bootstrap --%>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="script/main.js"></script>
     <%-- Data tables --%>    <%-- Jquery --%>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -22,25 +26,38 @@
 
     <script>
         $(document).ready(function () {
-            $('#tableOeuvres').DataTable();
+            $('#tableOeuvres').DataTable({
+                language: fr_language
+            });
         });
     </script>
 
     <div class="container">
+
+        <p>
+            <a class="btn btn-success" href="index.jsp" role="button">Retour Accueil</a>
+        </p>
+
         <h1>Catalogue des oeuvres</h1>
         <table id="tableOeuvres">
             <thead>
-                <th>Titre</th>
-                <th>Prix</th>
-                <th>Propriétaire</th>
-                <th>Action</th>
+                <tr>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Etat</th>
+                    <th>Prix</th>
+                    <th>Propriétaire</th>
+                    <th>Action</th>
+                </tr>
             </thead>
             <tbody>
-                <c:forEach items="${oeuvres}" var="item">
+                <c:forEach items="${oeuvreventes}" var="oeuvrevente">
                     <tr>
-                        <td>${item.titre}</td>
-                        <td>${item.prix}</td>
-                        <td>${item.owner}</td>
+                        <td>${oeuvrevente.idOeuvrevente}</td>
+                        <td>${oeuvrevente.titreOeuvrevente}</td>
+                        <td>${oeuvrevente.etatOeuvrevente}</td>
+                        <td>${oeuvrevente.prixOeuvrevente}</td>
+                        <td>${oeuvrevente.proprietaire.nomComplet}</td>
                         <!-- Modifier button -->
                         <td>
                             <a href="#" class="btn btn-info" role="button">Réserver</a>
