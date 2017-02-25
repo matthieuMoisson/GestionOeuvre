@@ -49,4 +49,8 @@ public class Proprietaire implements Serializable {
 		this.prenomProprietaire = prenomProprietaire;
 	}
 
+	public String getNomComplet() {
+		return this.getPrenomProprietaire() + " " + this.getNomProprietaire();
+	}
+
 }
