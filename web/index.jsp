@@ -1,48 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"	 pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta http-equiv="refresh" content="0;URL=javascript:fermer();">
+	<meta charset="UTF-8">
 	<title>Expo : Médiathèque De POLYTECH</title>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
-			integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-			crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" href="style/main.css">
+	<%-- Bootstrap --%>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 
 
-<script language="JavaScript">
-    function fermer() {
-    }
-</script>
-
 <body>
-<p align="center"></p>
-<p align="center">
-	<font face="Arial" size="4"><u>Médiathèque de POLYTECH ! </u></font>
-</p>
-<p align="center">
-	<font color="#004080" face="Arial" size="4">Gestion de
-		l'exposition 2016</font>
-</p>
-<p align="left">
-	<font color="#004080" face="Arial"><u>Sélectionnez la
-		fonctionnalité voulue:</u></font>
-</p>
-<ul>
-	<li><a href="Controleur?action=ajouterAdherent"><font
-			face="Arial">Ajout Adhérent</font></a></li>
-	<li><a href="Controleur?action=listerAdherent"><font
-			face="Arial">lister les adhérents</font></a><font face="Arial"> </font></li>
-	<li><a href="OwnerController?action=getOwners">lister les propriétaires</a></li>
-	<li><a href="javascript:fermer()"><font face="Arial">Quitter</font></a><font
-			face="Arial"> </font></li>
-</ul>
 
-<script type="javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="container">
+	<h1>Médiathèque de POLYTECH ! </h1>
+	<h2>Gestion de l'exposition 2016</h2>
+	<h3>Sélectionnez la fonctionnalité voulue :</h3>
+	<div class="row">
+		<ul>
+			<li><a href="Controleur?action=ajouterAdherent">Ajout Adhérent</a></li>
+			<li><a href="Controleur?action=listerAdherent">lister les adhérents</a></li>
+			<li><a href="OwnerController?action=getOwners">lister les propriétaires</a></li>
+			<li><a href="#" onclick="close_window();return false;">Quitter</a></li>
+		</ul>
+	</div>
+</div>
 
+<%-- JS --%>
+	<%-- Jquery --%>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<%-- Bootstrap --%>
+	<script type="javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%-- End JS --%>
 </body>
 </html>
