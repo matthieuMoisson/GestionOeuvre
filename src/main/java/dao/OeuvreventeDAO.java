@@ -2,8 +2,6 @@ package dao;
 
 import meserreurs.MonException;
 import metier.Oeuvrevente;
-import persistance.Connexion;
-import persistance.DialogueBd;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,19 +10,10 @@ import java.util.List;
 /**
  * Created by Gaetan on 25/02/2017.
  */
-public class OeuvreventeDAO {
+public class OeuvreventeDAO extends DAO{
 
-    private Connection conn;
 
-    public OeuvreventeDAO() {
-        try {
-            this.conn = Connexion.getInstance().getConnexion();
-        } catch (MonException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void addOeuvrevente(Oeuvrevente oeuvrevente) {
+    public void insert(Oeuvrevente oeuvrevente) {
         try {
             String query = "insert into oeuvrevente (titre_oeuvrevente, etat_oeuvrevente, prix_oeuvrevente, id_proprietaire) values (?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement( query );
@@ -39,7 +28,7 @@ public class OeuvreventeDAO {
         }
     }
 
-    public void deleteOeuvrevente( int id ) {
+    public void delete( int id ) {
         try {
             String query = "delete from oeuvrevente where id_oeuvrevente=?";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -59,7 +48,7 @@ public class OeuvreventeDAO {
             preparedStatement.setString( 2, oeuvrevente.getEtatOeuvrevente());
             preparedStatement.setFloat( 3, oeuvrevente.getPrixOeuvrevente());
             preparedStatement.setInt( 4, oeuvrevente.getProprietaire().getIdProprietaire());
-            preparedStatement.setInt( 4, oeuvrevente.getIdOeuvrevente());
+            preparedStatement.setInt( 5, oeuvrevente.getIdOeuvrevente());
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -67,19 +56,13 @@ public class OeuvreventeDAO {
         }
     }
 
-    public List<Oeuvrevente> getAllOeuvrevente() {
+    public List<Oeuvrevente> findAll() {
         List<Oeuvrevente> oeuvreventes = new ArrayList<Oeuvrevente>();
         try {
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery( "select * from oeuvrevente" );
             while( resultSet.next() ) {
-                Oeuvrevente oeuvrevente = new Oeuvrevente();
-                oeuvrevente.setIdOeuvrevente( resultSet.getInt( "id_oeuvrevente" ) );
-                oeuvrevente.setTitreOeuvrevente( resultSet.getString( "titre_oeuvrevente" ) );
-                oeuvrevente.setEtatOeuvrevente(resultSet.getString("etat_oeuvrevente"));
-                oeuvrevente.setPrixOeuvrevente(resultSet.getFloat("prix_oeuvrevente"));
-                oeuvrevente.setProprietaire(new Service().getOwner(resultSet.getInt("id_proprietaire")));
-                oeuvreventes.add(oeuvrevente);
+                oeuvreventes.add(this.buildDomainObject(resultSet));
             }
             resultSet.close();
             statement.close();
@@ -87,5 +70,32 @@ public class OeuvreventeDAO {
             e.printStackTrace();
         }
         return oeuvreventes;
+    }
+
+    public Oeuvrevente find(int id) {
+        Oeuvrevente oeuvrevente = null;
+        try {
+            String query = "select * from oeuvrevente where id_oeuvrevente=?";
+            PreparedStatement preparedStatement = conn.prepareStatement( query );
+            preparedStatement.setInt( 1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                oeuvrevente = this.buildDomainObject(resultSet);
+            }
+            preparedStatement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return oeuvrevente;
+    }
+
+    private Oeuvrevente buildDomainObject(ResultSet row) throws SQLException, MonException {
+        Oeuvrevente oeuvrevente = new Oeuvrevente();
+        oeuvrevente.setIdOeuvrevente( row.getInt( "id_oeuvrevente" ) );
+        oeuvrevente.setTitreOeuvrevente( row.getString( "titre_oeuvrevente" ) );
+        oeuvrevente.setEtatOeuvrevente(row.getString("etat_oeuvrevente"));
+        oeuvrevente.setPrixOeuvrevente(row.getFloat("prix_oeuvrevente"));
+        oeuvrevente.setProprietaire(new Service().getOwner(row.getInt("id_proprietaire")));
+        return oeuvrevente;
     }
 }

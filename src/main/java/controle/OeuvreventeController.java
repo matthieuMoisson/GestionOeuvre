@@ -12,10 +12,23 @@ import java.util.List;
 @WebServlet("/OeuvreventeController")
 public class OeuvreventeController extends Controller {
 
+    private OeuvreventeDAO oeuvreventeDAO;
+
+    public OeuvreventeController() {
+        super();
+        this.oeuvreventeDAO = new OeuvreventeDAO();
+    }
+
     public void listeAction() {
-        OeuvreventeDAO oeuvreventeDAO = new OeuvreventeDAO();
-        List<Oeuvrevente> oeuvreventes = oeuvreventeDAO.getAllOeuvrevente();
+        List<Oeuvrevente> oeuvreventes = this.oeuvreventeDAO.findAll();
         this.request.setAttribute("oeuvreventes", oeuvreventes);
+        this.render();
+    }
+
+    public void detailAction() {
+        int id = Integer.parseInt(this.request.getParameter("id"));
+        Oeuvrevente oeuvrevente = this.oeuvreventeDAO.find(id);
+        this.request.setAttribute("oeuvrevente", oeuvrevente);
         this.render();
     }
 }

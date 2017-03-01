@@ -60,6 +60,7 @@
                         <td>${oeuvrevente.proprietaire.nomComplet}</td>
                         <!-- Modifier button -->
                         <td>
+                            <a href="OeuvreventeController?action=detail&id=${oeuvrevente.idOeuvrevente}" class="btn btn-info" role="button">Consulter</a>
                             <a href="#" class="btn btn-info" role="button">Réserver</a>
                             <a href="#" class="btn btn-info" role="button">Modifier</a>
                         </td>
