@@ -1,6 +1,7 @@
 package controle;
 
 import meserreurs.MonException;
+import utilitaires.FlashMessage;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Gaetan on 25/02/2017.
@@ -23,6 +26,8 @@ public abstract class Controller extends HttpServlet {
 
     protected HttpServletRequest request = null;
     protected HttpServletResponse response = null;
+
+    private List<FlashMessage> flashMessages = new ArrayList<FlashMessage>();
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -94,6 +99,9 @@ public abstract class Controller extends HttpServlet {
         if (this.response == null || this.request == null) {
 //            throw new MonException("Couldn't get request or response");
         }
+
+        this.request.setAttribute("flashMessages", this.getFlashMessagesHtml());
+
         if (! destinationPage.startsWith("/")) {
             destinationPage = "/" + destinationPage;
         }
@@ -108,5 +116,25 @@ public abstract class Controller extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    protected List<FlashMessage> getFlashMessages() {
+        return flashMessages;
+    }
+
+    protected void addFlashMessages(FlashMessage flashMessage) {
+        this.flashMessages.add(flashMessage);
+    }
+
+    private String getFlashMessagesHtml() {
+        String html = "";
+        for (FlashMessage flashMessage :this.getFlashMessages()) {
+            html += flashMessage.buildHtml();
+        }
+        return html;
+    }
+
+    protected void clearFlashMessages() {
+        this.flashMessages.clear();
     }
 }
