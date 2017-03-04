@@ -10,16 +10,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Catalogue des oeuvres</title>
     <link rel="stylesheet" type="text/css" href="style/main.css">
-    <%-- Bootstrap --%>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <script src="script/main.js"></script>
-    <%-- Data tables --%>    <%-- Jquery --%>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+    <%-- Bootstrap & JQuery --%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <%-- Data tables --%>
     <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
 </head>
 
 <body>
@@ -28,6 +32,10 @@
         $(document).ready(function () {
             $('#tableOeuvres').DataTable({
                 language: fr_language
+            });
+
+            $('a[data-toggle=modal], button[data-toggle=modal]').click(function () {
+                $('#idOeuvrevente').val($(this).data('id'));
             });
         });
     </script>
@@ -39,6 +47,9 @@
         </p>
 
         <h1>Catalogue des oeuvres</h1>
+
+        <div class="flashMessages">${flashMessages}</div>
+
         <table id="tableOeuvres">
             <thead>
                 <tr>
@@ -61,7 +72,7 @@
                         <!-- Modifier button -->
                         <td>
                             <a href="OeuvreventeController?action=detail&id=${oeuvrevente.idOeuvrevente}" class="btn btn-info" role="button">Consulter</a>
-                            <a href="#" class="btn btn-info" role="button">Réserver</a>
+                            <a href="#reservationModal" data-toggle="modal" data-id="${oeuvrevente.idOeuvrevente}" class="btn btn-info" role="button">Réserver</a>
                             <a href="#" class="btn btn-info" role="button">Modifier</a>
                         </td>
                     </tr>
@@ -70,9 +81,37 @@
         </table>
     </div>
 
-    <%-- JS --%>
-    <%-- Bootstrap --%>
-    <script type="javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <%-- End JS --%>
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="reservationModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Réservation d'une oeuvre destinée à la vente</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="OeuvreventeController?action=liste" method="post">
+                            <input type="hidden" id="idOeuvrevente" name="idOeuvrevente" value=""/>
+                            <select id="idAdherent" name="idAdherent">
+                                <c:forEach items="${adherents}" var="adherent">
+                                    <option value="${adherent.idAdherent}">${adherent.nomComplet}</option>
+                                </c:forEach>
+                            </select>
+                            <input type="submit" value="Réserver">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 </body>
 </html>

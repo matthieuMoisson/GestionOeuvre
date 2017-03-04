@@ -59,4 +59,8 @@ public class Adherent implements Serializable {
 		this.villeAdherent = villeAdherent;
 	}
 
+	public String getNomComplet() {
+		return this.getPrenomAdherent() + " " + this.getNomAdherent();
+	}
+
 }
