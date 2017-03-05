@@ -4,13 +4,17 @@ import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import dao.AdherentDAO;
 import dao.OeuvreventeDAO;
 import dao.ReservationDAO;
+import dao.Service;
+import meserreurs.MonException;
 import metier.Adherent;
 import metier.Oeuvrevente;
+import metier.Proprietaire;
 import metier.Reservation;
 import utilitaires.FlashMessage;
 import utilitaires.FlashMessageStatut;
 
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -42,6 +46,29 @@ public class OeuvreventeController extends Controller {
         this.request.setAttribute("oeuvreventes", oeuvreventes);
         this.request.setAttribute("adherents", adherents);
         this.render();
+    }
+
+    public void addAction() {
+        Service unService = new Service();
+        if(false){
+            //Si le formulaire est valide
+            Oeuvrevente oeuvrevente = new Oeuvrevente();
+            //oeuvrevente.setProprietaire(unService.getOwner(request.getParameter("idProprietaire")));
+            oeuvrevente.setEtatOeuvrevente("L");
+            //oeuvrevente.setPrixOeuvrevente(request.getParameter("numberprix"));
+            oeuvrevente.setTitreOeuvrevente(request.getParameter("txttitre"));
+            OeuvreventeDAO oeuvreventeDAO = new OeuvreventeDAO();
+            oeuvreventeDAO.insert(oeuvrevente);
+        }
+
+        try {
+            this.request.setAttribute("proprietaires", unService.getOwners());
+        } catch (MonException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        this.render();
+
     }
 
     public void detailAction() {

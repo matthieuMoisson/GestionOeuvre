@@ -46,8 +46,10 @@
             <a class="btn btn-success" href="index.jsp" role="button">Retour Accueil</a>
         </p>
 
-        <h1>Catalogue des oeuvres</h1>
-
+        <h1>
+            Catalogue des oeuvres
+            <a class="btn btn-success" href="OeuvreventeController?action=add">Ajouter une oeuvre</a>
+        </h1>
         <div class="flashMessages">${flashMessages}</div>
 
         <table id="tableOeuvres">
