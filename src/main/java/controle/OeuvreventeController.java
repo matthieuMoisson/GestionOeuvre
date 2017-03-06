@@ -31,10 +31,10 @@ public class OeuvreventeController extends Controller {
 
     public void listeAction() {
 
-        this.clearFlashMessages();
 
         if (this.request.getParameter("idAdherent") != null && this.request.getParameter("idOeuvrevente") != null) {
             FlashMessage flashMessage = this.reservationSubAction();
+            this.clearFlashMessages();
             this.addFlashMessages(flashMessage);
         }
 
@@ -42,7 +42,7 @@ public class OeuvreventeController extends Controller {
         List<Adherent> adherents = new AdherentDAO().findAll();
         this.request.setAttribute("oeuvreventes", oeuvreventes);
         this.request.setAttribute("adherents", adherents);
-        this.render();
+        this.render("oeuvrevente/liste");
     }
 
     public void addAction() {
@@ -68,6 +68,14 @@ public class OeuvreventeController extends Controller {
         Oeuvrevente oeuvrevente = this.oeuvreventeDAO.find(id);
         this.request.setAttribute("oeuvrevente", oeuvrevente);
         this.render();
+    }
+
+    public void deleteAction() {
+        int id = Integer.parseInt(this.request.getParameter("id"));
+        oeuvreventeDAO.delete(id);
+        this.clearFlashMessages();
+        this.addFlashMessages(new FlashMessage("Oeuvre vente supprimee", FlashMessageStatut.SUCCESS));
+        listeAction();
     }
 
     public FlashMessage reservationSubAction() {

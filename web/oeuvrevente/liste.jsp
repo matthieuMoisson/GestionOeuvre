@@ -48,7 +48,10 @@
 
         <h1>
             Catalogue des oeuvres
-            <a class="btn btn-success" href="OeuvreventeController?action=add">Ajouter une oeuvre</a>
+            <br>
+            <a class="btn btn-info" href="OeuvreventeController?action=add">
+                <span class="glyphicon glyphicon-plus"></span> Ajout d'une nouvelle Oeuvre
+            </a>
         </h1>
         <div class="flashMessages">${flashMessages}</div>
 
@@ -60,7 +63,7 @@
                     <th>Etat</th>
                     <th>Prix</th>
                     <th>Propriétaire</th>
-                    <th>Action</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,9 +76,14 @@
                         <td>${oeuvrevente.proprietaire.nomComplet}</td>
                         <!-- Modifier button -->
                         <td>
-                            <a href="OeuvreventeController?action=detail&id=${oeuvrevente.idOeuvrevente}" class="btn btn-info" role="button">Consulter</a>
-                            <a href="#reservationModal" data-toggle="modal" data-id="${oeuvrevente.idOeuvrevente}" class="btn btn-info" role="button">Réserver</a>
-                            <a href="#" class="btn btn-info" role="button">Modifier</a>
+                            <a href="#reservationModal" data-toggle="modal" data-id="${oeuvrevente.idOeuvrevente}"
+                               class="btn btn-info" role="button"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                            <a href="OeuvreventeController?action=detail&id=${oeuvrevente.idOeuvrevente}"
+                               class="btn btn-warning" role="button"><span class="glyphicon glyphicon-eye-open"></span></a>
+                            <a href="#"
+                               class="btn btn-success" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="OeuvreventeController?action=delete&id=${oeuvrevente.idOeuvrevente}"
+                               class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -86,6 +94,7 @@
     <div class="container">
         <!-- Modal -->
         <div class="modal fade" id="reservationModal" role="dialog">
+            <form class="form-horizontal" action="OeuvreventeController?action=liste" method="post">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -94,23 +103,27 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Réservation d'une oeuvre destinée à la vente</h4>
                     </div>
-                    <div class="modal-body">
-                        <form action="OeuvreventeController?action=liste" method="post">
+                    <div class="modal-body container">
                             <input type="hidden" id="idOeuvrevente" name="idOeuvrevente" value=""/>
-                            <select id="idAdherent" name="idAdherent">
-                                <c:forEach items="${adherents}" var="adherent">
-                                    <option value="${adherent.idAdherent}">${adherent.nomComplet}</option>
-                                </c:forEach>
-                            </select>
-                            <input type="submit" value="Réserver">
-                        </form>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="idAdherent">Sélectionner l'adhérent</label>
+                                <div class="col-sm-10">
+                                    <select id="idAdherent" name="idAdherent">
+                                        <c:forEach items="${adherents}" var="adherent">
+                                            <option value="${adherent.idAdherent}">${adherent.nomComplet}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                        <input type="submit" class="btn btn-info" value="Réserver">
                     </div>
                 </div>
-
             </div>
+            </form>
         </div>
 
     </div>

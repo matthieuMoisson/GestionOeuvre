@@ -53,4 +53,16 @@ public class ReservationDAO extends DAO{
         }
         return reservationAlreadyDone;
     }
+
+    public void deleteAllByOeuvrevente(int id) {
+        try {
+            String query = "delete from reservation where id_oeuvrevente=?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

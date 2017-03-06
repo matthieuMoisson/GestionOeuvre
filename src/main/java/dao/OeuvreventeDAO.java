@@ -30,6 +30,7 @@ public class OeuvreventeDAO extends DAO{
 
     public void delete( int id ) {
         try {
+            new ReservationDAO().deleteAllByOeuvrevente(id);
             String query = "delete from oeuvrevente where id_oeuvrevente=?";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, id);
