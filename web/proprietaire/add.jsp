@@ -13,14 +13,14 @@
 <body>
 <div>
     <p>
-        <a class="btn btn-success"  role="button" href="OwnerController?action=getOwners">
+        <a class="btn btn-success"  role="button" href="ProprietaireController?action=liste">
             Retour vers la liste des propriétaires
         </a>
     </p>
 
     <div class="container">
         <h2>Ajout d'un propriétaire</h2>
-        <form class="form-horizontal" name='identification' method="post" action="OwnerController?action=addOwner">
+        <form class="form-horizontal" name='identification' method="post" action="ProprietaireController?action=add">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="nom">Nom:</label>
                 <div class="col-sm-10">

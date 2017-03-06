@@ -1,10 +1,7 @@
 package controle;
 
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
-import dao.AdherentDAO;
-import dao.OeuvreventeDAO;
-import dao.ReservationDAO;
-import dao.Service;
+import dao.*;
 import meserreurs.MonException;
 import metier.Adherent;
 import metier.Oeuvrevente;
@@ -61,12 +58,7 @@ public class OeuvreventeController extends Controller {
             oeuvreventeDAO.insert(oeuvrevente);
         }
 
-        try {
-            this.request.setAttribute("proprietaires", unService.getOwners());
-        } catch (MonException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        this.request.setAttribute("proprietaires", new ProprietaireDAO().findAll());
         this.render();
 
     }

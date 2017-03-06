@@ -19,17 +19,17 @@
 <body>
 <div>
     <p>
-        <a class="btn btn-success"  role="button" href="OwnerController?action=getOwners">
+        <a class="btn btn-success"  role="button" href="ProprietaireController?action=liste">
             Retour vers la liste des propriétaires
         </a>
     </p>
 
     <div class="container">
         <h2>Modifier un propriétaire</h2>
-        <form class="form-horizontal"  method="post" action="OwnerController?action=editOwner">
+        <form class="form-horizontal"  method="post" action="ProprietaireController?action=edit">
             <div class="form-group">
                 <div class="col-sm-10">
-                    <input type="hidden" class="form-control" name="txtid" id="id" value="${owner.idProprietaire}" readonly>
+                    <input type="hidden" class="form-control" name="idProprietaire" id="idProprietaire" value="${owner.idProprietaire}" readonly>
                 </div>
             </div>
             <div class="form-group">
