@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+
+import static java.lang.Integer.parseInt;
 
 /**
  * Created by Gaetan on 25/02/2017.
@@ -46,16 +49,25 @@ public class OeuvreventeController extends Controller {
     }
 
     public void addAction() {
-        Service unService = new Service();
-        if(false){
+        String titre;
+        Integer prix, idProprietaire;
+        titre = this.request.getParameter("txttitre");
+        if(titre != null && this.request.getParameter("numberprix")!=null && this.request.getParameter("idProprietaire")!=null){
             //Si le formulaire est valide
+            prix = Integer.parseInt(this.request.getParameter("numberprix"));
+            idProprietaire = Integer.parseInt(this.request.getParameter("idProprietaire"));
             Oeuvrevente oeuvrevente = new Oeuvrevente();
-            //oeuvrevente.setProprietaire(unService.getOwner(request.getParameter("idProprietaire")));
             oeuvrevente.setEtatOeuvrevente("L");
-            //oeuvrevente.setPrixOeuvrevente(request.getParameter("numberprix"));
-            oeuvrevente.setTitreOeuvrevente(request.getParameter("txttitre"));
+            oeuvrevente.setTitreOeuvrevente(titre);
+            oeuvrevente.setPrixOeuvrevente(prix);
+            ProprietaireDAO proprietaireDAO = new ProprietaireDAO();
+            Proprietaire proprietaire = proprietaireDAO.find(idProprietaire);
+            oeuvrevente.setProprietaire(proprietaire);
             OeuvreventeDAO oeuvreventeDAO = new OeuvreventeDAO();
             oeuvreventeDAO.insert(oeuvrevente);
+            this.clearFlashMessages();
+            this.addFlashMessages(new FlashMessage("Ajout d'une oeuvre", FlashMessageStatut.SUCCESS));
+            this.listeAction();
         }
 
         this.request.setAttribute("proprietaires", new ProprietaireDAO().findAll());
@@ -63,15 +75,46 @@ public class OeuvreventeController extends Controller {
 
     }
 
+    public void editerAction() {
+        int idOeuvrevente = parseInt(this.request.getParameter("idOeuvrevente"));
+        Oeuvrevente oeuvrevente = oeuvreventeDAO.find(idOeuvrevente);
+        String titre;
+        Integer prix, idProprietaire;
+        titre = this.request.getParameter("txttitre");
+        if(titre != null && this.request.getParameter("numberprix")!=null && this.request.getParameter("idProprietaire")!=null){
+            prix = Integer.parseInt(this.request.getParameter("numberprix"));
+            idProprietaire = Integer.parseInt(this.request.getParameter("idProprietaire"));
+            oeuvrevente.setEtatOeuvrevente("L");
+            oeuvrevente.setTitreOeuvrevente(titre);
+            oeuvrevente.setPrixOeuvrevente(prix);
+            ProprietaireDAO proprietaireDAO = new ProprietaireDAO();
+            Proprietaire proprietaire = proprietaireDAO.find(idProprietaire);
+            oeuvrevente.setProprietaire(proprietaire);
+            OeuvreventeDAO oeuvreventeDAO = new OeuvreventeDAO();
+            oeuvreventeDAO.insert(oeuvrevente);
+            this.clearFlashMessages();
+            this.addFlashMessages(new FlashMessage("Modification d'une oeuvre", FlashMessageStatut.SUCCESS));
+            this.listeAction();
+
+        }else{
+            this.request.setAttribute("txttitre", oeuvrevente.getTitreOeuvrevente());
+            this.request.setAttribute("txttitre", oeuvrevente.getTitreOeuvrevente());
+            this.request.setAttribute("numberprix", oeuvrevente.getPrixOeuvrevente());
+            this.request.setAttribute("idProprietaire", oeuvrevente.getProprietaire().getIdProprietaire());
+            this.request.setAttribute("proprietaires", new ProprietaireDAO().findAll());
+            this.render();
+        }
+    }
+
     public void detailAction() {
-        int id = Integer.parseInt(this.request.getParameter("id"));
+        int id = parseInt(this.request.getParameter("id"));
         Oeuvrevente oeuvrevente = this.oeuvreventeDAO.find(id);
         this.request.setAttribute("oeuvrevente", oeuvrevente);
         this.render();
     }
 
     public void deleteAction() {
-        int id = Integer.parseInt(this.request.getParameter("id"));
+        int id = parseInt(this.request.getParameter("id"));
         oeuvreventeDAO.delete(id);
         this.clearFlashMessages();
         this.addFlashMessages(new FlashMessage("Oeuvre vente supprimee", FlashMessageStatut.SUCCESS));
@@ -79,8 +122,8 @@ public class OeuvreventeController extends Controller {
     }
 
     public FlashMessage reservationSubAction() {
-        int idAdherent = Integer.parseInt(this.request.getParameter("idAdherent"));
-        int idOeuvrevente = Integer.parseInt(this.request.getParameter("idOeuvrevente"));
+        int idAdherent = parseInt(this.request.getParameter("idAdherent"));
+        int idOeuvrevente = parseInt(this.request.getParameter("idOeuvrevente"));
         Adherent adherent = new AdherentDAO().find(idAdherent);
         Oeuvrevente oeuvrevente = this.oeuvreventeDAO.find(idOeuvrevente);
         Reservation reservation = new Reservation();

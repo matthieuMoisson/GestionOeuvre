@@ -12,7 +12,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Ajouter une oeuvre</title>
+    <title>Edition d'une oeuvre</title>
     <link rel="stylesheet" type="text/css" href="style/main.css">
     <script src="script/main.js"></script>
 
@@ -29,23 +29,13 @@
 <body>
 
 <div class="container">
-
-    <p>
-        <a class="btn btn-success" href="index.jsp" role="button">Retour Accueil</a>
-    </p>
     <div class="container">
-        <h1>Ajout d'une oeuvre</h1>
-        <form class="form-horizontal" name='identification' method="post" action="OeuvreventeController?action=add">
+        <h1>Edition d'une oeuvre</h1>
+        <form class="form-horizontal" name='identification' method="post" action="OeuvrepretController?action=add">
             <div class="form-group">
                 <label class="control-label col-sm-2">Titre de l'oeuvre :</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="txttitre" id="txttitre" placeholder="Entrez le titre ..." value="" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2">Prix de l'oeuvre :</label>
-                <div class="col-sm-10">
-                    <input type="number" class="form-control" name="numberprix" id="numberprix" required>
+                    <input type="text" class="form-control" name="txttitre" id="txttitre" placeholder="Entrez le titre ..." value="${txttitre}" required>
                 </div>
             </div>
             <div class="form-group">
@@ -60,7 +50,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-info">Ajouter</button>
+                    <button type="submit" class="btn btn-info pull pull-right">Modifier</button>
                 </div>
             </div>
         </form>

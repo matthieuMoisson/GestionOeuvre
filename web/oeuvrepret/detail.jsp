@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Gaetan
+  User: Matthieu
   Date: 25/02/2017
   Time: 10:37
   To change this template use File | Settings | File Templates.
@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Catalogue des oeuvres</title>
+    <title>Détail d'une oeuvre</title>
     <link rel="stylesheet" type="text/css" href="style/main.css">
     <%-- Bootstrap --%>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,18 +22,16 @@
 
 <body>
 
-      <div class="container">
-        <h1>Détail d'une oeuvre</h1>
-            <p>ID : ${oeuvrevente.idOeuvrevente}</p>
-            <p>Titre : ${oeuvrevente.titreOeuvrevente}</p>
-            <p>Etat : ${oeuvrevente.etatOeuvrevente}</p>
-            <p>Prix : ${oeuvrevente.prixOeuvrevente}</p>
-            <p>Propriétaire : ${oeuvrevente.proprietaire.nomComplet}</p>
-        </div>
+<div class="container">
+    <h1>Détail d'une oeuvre pret</h1>
+    <p>ID : ${oeuvrepret.idOeuvrepret}</p>
+    <p>Titre : ${oeuvrepret.titreOeuvrepret}</p>
+    <p>Propriétaire : ${oeuvrepret.proprietaire.nomComplet}</p>
+</div>
 
-    <%-- JS --%>
-    <%-- Bootstrap --%>
-    <script type="javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <%-- End JS --%>
+<%-- JS --%>
+<%-- Bootstrap --%>
+<script type="javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%-- End JS --%>
 </body>
 </html>

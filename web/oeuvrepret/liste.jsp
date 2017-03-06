@@ -46,7 +46,13 @@
             <a class="btn btn-success" href="index.jsp" role="button">Retour Accueil</a>
         </p>
 
-        <h1>Catalogue des oeuvres en prêt</h1>
+        <h1>
+            Catalogue des oeuvres en prêt
+            <br>
+            <a class="btn btn-info" href="OeuvrepretController?action=add">
+                <span class="glyphicon glyphicon-plus"></span> Ajout d'une nouvelle Oeuvre
+            </a>
+        </h1>
 
         <div class="flashMessages">${flashMessages}</div>
 
@@ -61,10 +67,15 @@
             <tbody>
             <c:forEach items="${oeuvreprets}" var="oeuvrepret">
                 <tr>
-                    <td>${oeuvrepret.titreOeuvrevente}</td>
+                    <td>${oeuvrepret.titreOeuvrepret}</td>
                     <td>${oeuvrepret.proprietaire.nomComplet}</td>
-                    <!-- Modifier button -->
                     <td>
+                        <a href="OeuvrepretController?action=detail&idOeuvrepret=${oeuvrepret.idOeuvrepret}"
+                           class="btn btn-warning" role="button"><span class="glyphicon glyphicon-eye-open"></span></a>
+                        <a href="OeuvrepretController?action=editer&idOeuvrepret=${oeuvrepret.idOeuvrepret}"
+                           class="btn btn-success" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="OeuvrepretController?action=delete&idOeuvrepret=${oeuvrepret.idOeuvrepret}"
+                           class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span></a>
                     </td>
                 </tr>
             </c:forEach>

@@ -29,23 +29,13 @@
 <body>
 
 <div class="container">
-
-    <p>
-        <a class="btn btn-success" href="index.jsp" role="button">Retour Accueil</a>
-    </p>
     <div class="container">
         <h1>Ajout d'une oeuvre</h1>
-        <form class="form-horizontal" name='identification' method="post" action="OeuvreventeController?action=add">
+        <form class="form-horizontal" name='identification' method="post" action="OeuvrepretController?action=add">
             <div class="form-group">
                 <label class="control-label col-sm-2">Titre de l'oeuvre :</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="txttitre" id="txttitre" placeholder="Entrez le titre ..." value="" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2">Prix de l'oeuvre :</label>
-                <div class="col-sm-10">
-                    <input type="number" class="form-control" name="numberprix" id="numberprix" required>
                 </div>
             </div>
             <div class="form-group">

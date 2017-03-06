@@ -80,7 +80,7 @@
                                class="btn btn-info" role="button"><span class="glyphicon glyphicon-shopping-cart"></span></a>
                             <a href="OeuvreventeController?action=detail&id=${oeuvrevente.idOeuvrevente}"
                                class="btn btn-warning" role="button"><span class="glyphicon glyphicon-eye-open"></span></a>
-                            <a href="#"
+                            <a href="OeuvreventeController?action=editer&idOeuvrevente=${oeuvrevente.idOeuvrevente}"
                                class="btn btn-success" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
                             <a href="OeuvreventeController?action=delete&id=${oeuvrevente.idOeuvrevente}"
                                class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span></a>
