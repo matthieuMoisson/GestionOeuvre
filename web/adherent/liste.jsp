@@ -38,6 +38,8 @@
 				<td>
 					<a href="AdherentController?action=edit&idAdherent=${item.idAdherent}"
 					   class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
+				</td>
+				<td>
 					<a href="AdherentController?action=delete&idAdherent=${item.idAdherent}"
 					   class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 				</td>
