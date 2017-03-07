@@ -52,10 +52,11 @@ public class ProprietaireDAO extends DAO {
 
     public void update( Proprietaire proprietaire ) {
         try {
-            String query = "update proprietaire set prenom_proprietaire=?, nom_proprietaire=?";
+            String query = "update proprietaire set prenom_proprietaire=?, nom_proprietaire=? where id_proprietaire=?";
             PreparedStatement preparedStatement = conn.prepareStatement( query );
             preparedStatement.setString( 1, proprietaire.getPrenomProprietaire());
             preparedStatement.setString( 2, proprietaire.getNomProprietaire());
+            preparedStatement.setString( 3, proprietaire.getIdProprietaire()+"");
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {

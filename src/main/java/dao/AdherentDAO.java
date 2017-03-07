@@ -2,7 +2,6 @@ package dao;
 
 import meserreurs.MonException;
 import metier.Adherent;
-import metier.Oeuvrevente;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,6 +47,47 @@ public class AdherentDAO extends DAO{
             e.printStackTrace();
         }
         return adherent;
+    }
+
+    public void insert(Adherent adherent) {
+        try {
+            String query = "insert into adherent (nom_adherent, prenom_adherent, ville_adherent) values (?,?,?)";
+            PreparedStatement preparedStatement = conn.prepareStatement( query );
+            preparedStatement.setString( 1, adherent.getNomAdherent());
+            preparedStatement.setString( 2, adherent.getPrenomAdherent());
+            preparedStatement.setString( 3, adherent.getVilleAdherent());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(int id) {
+        try {
+            String query = "delete from adherent where id_adherent=?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update( Adherent adherent ) {
+        try {
+            String query = "update adherent set nom_adherent=?, prenom_adherent=?, ville_adherent=?  where id_adherent=?";
+            PreparedStatement preparedStatement = conn.prepareStatement( query );
+            preparedStatement.setString( 1, adherent.getNomAdherent());
+            preparedStatement.setString( 2, adherent.getPrenomAdherent());
+            preparedStatement.setString( 3, adherent.getVilleAdherent());
+            preparedStatement.setString( 4, adherent.getIdAdherent() + "");
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private Adherent buildDomainObject(ResultSet row) throws SQLException, MonException {

@@ -1,26 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%--
+  Created by IntelliJ IDEA.
+  User: seljo
+  Date: 19/02/2017
+  Time: 14:14
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Ajouter un  adhérent</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Affichage de tous les adhérents</title>
+    <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-
 <body>
     <div>
         <p>
-            <a class="btn btn-success"  role="button" href="Controleur?action=listerAdherent">
+            <a class="btn btn-success"  role="button" href="AdherentController?action=liste">
                 Retour vers la liste des adherents
             </a>
         </p>
 
         <div class="container">
-            <h2>Ajout d'un adhérent</h2>
-            <form class="form-horizontal" name='identification' method="post" action="Controleur?action=insererAdherent">
+            <h2>Modifier un adherent</h2>
+            <form class="form-horizontal"  method="post" action="AdherentController?action=edit">
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="hidden" class="form-control" name="idAdherent" id="id" value="${adherent.idAdherent}">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="nom">Nom:</label>
                     <div class="col-sm-10">
@@ -41,11 +52,11 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-info">Ajouter</button>
+                        <button type="submit" class="btn btn-info">Modifier</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+
 </body>
-</html>

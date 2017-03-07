@@ -32,7 +32,7 @@
 			<a class="btn btn-success" href="index.jsp" role="button">Retour Accueil</a>
 		</p>
 
-		<h2>Tableau des Adhérents ! <a class="btn btn-success" href="Controleur?action=ajouterAdherent" role="button">Ajouter un adherent</a></h2>
+		<h2>Tableau des Adhérents ! <a class="btn btn-success" href="AdherentController?action=add" role="button">Ajouter un adherent</a></h2>
 
 		<table id="tableAdherents">
 			<thead>
@@ -53,19 +53,11 @@
 					<td>${item.nomAdherent}</td>
 					<td>${item.prenomAdherent}</td>
 					<td>${item.villeAdherent}</td>
-					<!-- Modifier button -->
 					<td>
-						<form  name='identification' method="post" action="Controleur?action=getAdherent" onsubmit="">
-							<INPUT type="hidden" name="txtidAdherent" id ="idAdherent" value="${item.idAdherent}" >
-							<INPUT type="submit" class="btn btn-info"  value="Modifier" >
-						</form>
-					</td>
-					<!-- Delete button -->
-					<td>
-						<form  name='identification' method="post" action="Controleur?action=deleteAdherent" onsubmit="">
-							<INPUT type="hidden" name="txtidAdherent" value="${item.idAdherent}" >
-							<INPUT type="submit" class="btn btn-danger"  value="Supprimer" >
-						</form>
+						<a href="AdherentController?action=edit&idAdherent=${item.idAdherent}"
+						   class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
+						<a href="AdherentController?action=delete&idAdherent=${item.idAdherent}"
+						   class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 					</td>
 				</tr>
 			</c:forEach>
