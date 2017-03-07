@@ -2,21 +2,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Affichage de tous les adhérents</title>
-	<link rel="stylesheet" type="text/css" href="style/main.css">
-	<%-- Bootstrap --%>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-	<script src="script/main.js"></script>
-	<%-- Data tables --%>    <%-- Jquery --%>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-	<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
-	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-</head>
-<body>
+<jsp:include page="header.jsp">
+	<jsp:param name="titre" value="Affichage adhérants"/>
+</jsp:include>
 
 	<script>
 		$(document).ready(function () {
@@ -25,12 +13,6 @@
 			});
 		});
 	</script>
-
-	<div class="container">
-
-		<p>
-			<a class="btn btn-success" href="index.jsp" role="button">Retour Accueil</a>
-		</p>
 
 		<h2>Tableau des Adhérents ! <a class="btn btn-success" href="Controleur?action=ajouterAdherent" role="button">Ajouter un adherent</a></h2>
 
@@ -71,11 +53,7 @@
 			</c:forEach>
 			</tbody>
 		</table>
-	</div>
 
-	<%-- JS --%>
-	<%-- Bootstrap --%>
-	<script type="javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<%-- End JS --%>
-</body>
-</html>
+<jsp:include page="footer.jsp">
+	<jsp:param name="titre" value="Expo : Médiathèque De POLYTECH"/>
+</jsp:include>
