@@ -27,6 +27,7 @@ public class ProprietaireDAO extends DAO {
                 proprietaire = this.buildDomainObject(resultSet);
             }
             preparedStatement.close();
+            resultSet.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

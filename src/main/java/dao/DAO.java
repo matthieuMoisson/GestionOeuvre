@@ -12,11 +12,13 @@ import java.sql.SQLException;
  */
 abstract class DAO {
 
-    Connection conn;
+    static Connection conn;
 
-    DAO() {
+    public DAO() {
         try {
-            this.conn = Connexion.getInstance().getConnexion();
+            if (conn == null) {
+                conn = Connexion.getInstance().getConnexion();
+            }
         } catch (MonException e) {
             e.printStackTrace();
         }

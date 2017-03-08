@@ -84,6 +84,7 @@ public class OeuvreventeDAO extends DAO{
                 oeuvrevente = this.buildDomainObject(resultSet);
             }
             preparedStatement.close();
+            resultSet.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
