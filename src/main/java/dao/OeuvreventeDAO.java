@@ -96,7 +96,7 @@ public class OeuvreventeDAO extends DAO{
         oeuvrevente.setTitreOeuvrevente( row.getString( "titre_oeuvrevente" ) );
         oeuvrevente.setEtatOeuvrevente(row.getString("etat_oeuvrevente"));
         oeuvrevente.setPrixOeuvrevente(row.getFloat("prix_oeuvrevente"));
-        oeuvrevente.setProprietaire(new Service().getOwner(row.getInt("id_proprietaire")));
+        oeuvrevente.setProprietaire(new ProprietaireDAO().find(row.getInt("id_proprietaire")));
         return oeuvrevente;
     }
 }

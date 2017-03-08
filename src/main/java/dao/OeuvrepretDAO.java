@@ -90,7 +90,7 @@ public class OeuvrepretDAO extends DAO{
         Oeuvrepret oeuvrepret = new Oeuvrepret();
         oeuvrepret.setIdOeuvrepret( row.getInt( "id_oeuvrepret" ) );
         oeuvrepret.setTitreOeuvrepret( row.getString( "titre_oeuvrepret" ) );
-        oeuvrepret.setProprietaire(new Service().getOwner(row.getInt("id_proprietaire")));
+        oeuvrepret.setProprietaire(new ProprietaireDAO().find(row.getInt("id_proprietaire")));
         return oeuvrepret;
     }
 }
