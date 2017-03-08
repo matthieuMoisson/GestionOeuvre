@@ -9,19 +9,42 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta equiv="Content-Type" content="text/html;charset=UTF-8">
         <title>${param.titre}</title>
         <link rel="stylesheet" type="text/css" href="style/main.css">
-        <%-- Bootstrap --%>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
         <script src="script/main.js"></script>
-        <%-- Data tables --%>    <%-- Jquery --%>
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <%-- Bootstrap & JQuery --%>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <%-- Data tables --%>
         <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
         <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     </head>
 
-
     <body>
-        <div class="container">
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-target">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.jsp"><span class="glyphicon glyphicon-home"></span> Accueil</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse-target">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown"><a href="AdherentController?action=liste">Adhérents</a></li>
+                        <li class="dropdown"><a href="ProprietaireController?action=liste">Propriétaires</a></li>
+                        <li class="dropdown"><a href="OeuvreventeController?action=liste">Oeuvres ventes</a></li>
+                        <li class="dropdown"><a href="OeuvrepretController?action=liste">Oeuvres prêts</a></li>
+                        <li class="dropdown"><a href="#" onclick="close_window();return false;">Quitter</a></li>
+                    </ul>
+                </div>
+            </div><!-- /.container -->
+        </nav>
+        <br/>
+        <br/>
